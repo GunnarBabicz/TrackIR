@@ -1,8 +1,10 @@
 import cv2
 from ultralytics import YOLO
+from meshtastic_notifier import MeshtasticNotifier
 
 # Load a pretrained YOLO model (downloads automatically on first run)
 model = YOLO('yolov8n.pt')
+notifier = MeshtasticNotifier()
 
 # Open the test video
 cap = cv2.VideoCapture('videos/test_inside.mp4')
@@ -13,13 +15,20 @@ if not cap.isOpened():
 
 while True:
     ret, frame = cap.read()
-    
     if not ret:
         print("End of video reached.")
         break
 
-    # Run detection on this frame
-    results = model(frame, verbose=False)
+    # Run detection on this frame. Only detect people.
+    results = model(frame, classes = [0], verbose=False)
+
+    # If a person was detected, send a notification
+    
+    if len(results[0].boxes) > 0 and notifier.can_send():
+        sent = notifier.notify_person_detected()
+        if sent:
+            print("Alert sent.")
+    
 
     # Draw bounding boxes, labels, and confidence scores onto the frame
     annotated_frame = results[0].plot()
