@@ -1,16 +1,21 @@
 import cv2
+import json
 from ultralytics import YOLO
 from meshtastic_notifier import MeshtasticNotifier
+
+with open("config.json") as f:
+            config = json.load(f)
 
 # Load a pretrained YOLO model (downloads automatically on first run)
 model = YOLO('yolov8n.pt')
 notifier = MeshtasticNotifier()
 
 # Open the test video
-cap = cv2.VideoCapture('videos/test_inside.mp4')
-
+print("this is before")
+cap = cv2.VideoCapture(config["serialPortCamera"])
+print("test")
 if not cap.isOpened():
-    print("Error: Could not open video file.")
+    print("Error: Could not open camera. Please check port settings and try again")
     exit()
 
 while True:

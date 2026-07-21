@@ -18,7 +18,7 @@ class MeshtasticNotifier:
 
         self.interface = None
         if self.enabled:
-            self.interface = meshtastic.serial_interface.SerialInterface()
+            self.interface = meshtastic.serial_interface.SerialInterface(devPath = config["serialPortMeshtastic"])
 
     def can_send(self):
         return time.time() - self.last_sent_time >= self.cooldown_seconds

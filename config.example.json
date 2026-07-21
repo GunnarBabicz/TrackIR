@@ -1,7 +1,9 @@
 {
   "destinationId": 12345,
   "cooldownSeconds": 60,
-  "messagingEnabled": false
+  "messagingEnabled": false,
+  "serialPortMeshtastic" : "",
+  "serialPortCamera" : ""
 }
 
 
