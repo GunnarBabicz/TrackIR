@@ -3,7 +3,7 @@
   "cooldownSeconds": 60,
   "messagingEnabled": false,
   "serialPortMeshtastic" : "",
-  "serialPortCamera" : ""
+  "videoPath" : ""
 }
 
 

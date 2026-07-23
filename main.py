@@ -12,7 +12,7 @@ notifier = MeshtasticNotifier()
 
 # Open the test video
 print("this is before")
-cap = cv2.VideoCapture(config["serialPortCamera"])
+cap = cv2.VideoCapture(config["videoPath"])
 print("test")
 if not cap.isOpened():
     print("Error: Could not open camera. Please check port settings and try again")
