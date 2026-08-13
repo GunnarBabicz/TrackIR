@@ -1,18 +1,33 @@
 # TrackIR
-A proof of concept for detecting humans via thermal or standard cameras and notifying a user via meshtastic messages
 
-# Setup:
+A proof of concept for detecting humans via thermal or standard cameras and notifying a user via Meshtastic messages.
 
-1. Create a Python virtual environment in this folder and activate it (developed on version 3.13)
-2. Install torch with CUDA with the version needed for your GPU. The CUDA version can be found by running nvidia-smi. For example, with a cuda version of 13.0, the command would be - pip install torch --index-url https://download.pytorch.org/whl/cu130
-3. install the dependencies needed for the environment: pip install -r requirements.txt
-4. Create a copy of config.example.json and rename this "config.json"
-5. Configure the variables in config.json for the program. Below is an explanation of each value:
+## Setup
 
-  "destinationId" - This will be the node ID for the meshtastic node that you are sending your message to
-  "cooldownSeconds" - One a message is sent, the program will wait this long until checking again if there is a person in frame
-  "messagingEnabled" - This can be used to disable messaging (as is selected by default). Useful for ensuring camera and device function before attempting to send messages. When set to false, this will print to the console.
-  "serialPortMeshtastic" - This will need to be configured to the path of the serial port your Meshtastic node is connected to
-  "videoPath" - This will need to be configured to the path of your camera, or to the path of a video if this is being used for testing
+1. Create a Python virtual environment in this folder and activate it (developed on Python 3.13).
 
+2. Install PyTorch with CUDA support for your GPU. Find your CUDA version by running:
+   ```bash
+   nvidia-smi
+   ```
+   Then install the matching PyTorch build. For example, with CUDA 13.0:
+   ```bash
+   pip install torch --index-url https://download.pytorch.org/whl/cu130
+   ```
 
+3. Install the remaining dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Create a copy of `config.example.json` and rename it to `config.json`.
+
+5. Configure the variables in `config.json`:
+
+   | Variable | Description |
+   |---|---|
+   | `destinationId` | The node ID of the Meshtastic node you're sending messages to. |
+   | `cooldownSeconds` | After a message is sent, how long the program waits before checking again for a person in frame. |
+   | `messagingEnabled` | Enables/disables messaging (disabled by default). Useful for verifying camera and device function before sending real messages. When `false`, output is printed to the console instead. |
+   | `serialPortMeshtastic` | The serial port path for your connected Meshtastic node. |
+   | `videoPath` | The path to your camera device, or to a video file for testing. |
