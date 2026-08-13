@@ -2,9 +2,15 @@
 
 A proof of concept for detecting humans via thermal or standard cameras and notifying a user via Meshtastic messages.
 
+## Requirements
+
+1. A Linux device. Windows support is planned and will be coming in the near future
+2. Two Meshtastic nodes, with the ability of viewing the node ID of the receiving node
+3. A camera to be used for detection. While a thermal optic is intended for use with this program, a standard camera is also compatible
+
 ## Setup
 
-1. Create a Python virtual environment in this folder and activate it (developed on Python 3.13).
+1. Create a Python virtual environment in this folder and activate it. This application was developed on Python 3.13.
 
 2. Install PyTorch with CUDA support for your GPU. Find your CUDA version by running:
    ```bash
